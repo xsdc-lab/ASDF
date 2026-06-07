@@ -163,3 +163,6 @@
 [submodule "generators/radiance"]
 	path = generators/radiance
 	url = https://github.com/ucb-bar/radiance.git
+[submodule "generators/sdc_gen"]
+	path = generators/sdc_gen
+	url = https://github.com/xsdc-lab/sdc_gen.git
