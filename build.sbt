@@ -227,6 +227,7 @@ lazy val chipyard = {
     "saturn" -> saturn,
     "tacit" -> tacit,
     "gemmini" -> gemmini,
+    "sdc_gen" -> sdc_gen,
     "nvdla" -> nvdla,
     "radiance" -> radiance,
     "caliptra-aes-acc" -> caliptra_aes,
@@ -367,6 +368,15 @@ lazy val radiance = withInitCheck((project in file("generators/radiance")), "rad
 lazy val gemmini = withInitCheck(freshProject("gemmini", file("generators/gemmini")), "gemmini")
   .dependsOn(rocketchip)
   .settings(libraryDependencies ++= rocketLibDeps.value)
+  .settings(commonSettings)
+
+lazy val sdc_gen = withInitCheck(freshProject("sdc_gen", file("generators/sdc_gen/chisel/RtlGen")), "sdc_gen")
+  .dependsOn(rocketchip)
+  .settings(libraryDependencies ++= rocketLibDeps.value)
+  .settings(libraryDependencies ++= Seq(
+    "com.typesafe.play" %% "play-json" % "2.9.2",
+    "org.reflections" % "reflections" % "0.10.2"
+  ))
   .settings(commonSettings)
 
 lazy val nvdla = withInitCheck((project in file("generators/nvdla")), "nvdla")

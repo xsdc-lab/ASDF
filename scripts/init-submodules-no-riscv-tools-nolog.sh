@@ -43,6 +43,7 @@ function usage
     echo "  --fft         Initialize the optional FFT accelerator submodule"
     echo "  --radiance    Initialize the optional Radiance accelerator submodule"
     echo "  --gemmini     Initialize the optional Gemmini accelerator submodule"
+    echo "  --sdc         Initialize the optional SDC generator submodules"
     echo "  --nvdla       Initialize the optional NVDLA accelerator submodule"
     echo "  --cva6        Initialize the optional CVA6 core submodule"
     echo "  --sodor       Initialize the optional Sodor cores submodule"
@@ -60,6 +61,7 @@ ENABLE_SATURN=0
 ENABLE_FFT=0
 ENABLE_RADIANCE=0
 ENABLE_GEMMINI=0
+ENABLE_SDC=0
 ENABLE_NVDLA=0
 ENABLE_CVA6=0
 ENABLE_SODOR=0
@@ -116,6 +118,9 @@ do
 	--gemmini)
 	    ENABLE_GEMMINI=1
 	    ;;
+    --sdc)
+        ENABLE_SDC=1
+        ;;
 	--nvdla)
 	    ENABLE_NVDLA=1
 	    ;;
@@ -189,6 +194,7 @@ cd "$RDIR"
             generators/nvdla \
 	    generators/mempress \
             generators/gemmini \
+            generators/sdc_gen \
             generators/fft-generator \
             generators/radiance \
             generators/rocket-chip \
@@ -292,6 +298,11 @@ cd "$RDIR"
         submodule_name="generators/gemmini"
         git submodule update --init generators/gemmini || exit 1
         git -C generators/gemmini/ submodule update --init --recursive software/gemmini-rocc-tests || exit 1
+    fi
+
+    if [[ "$ENABLE_SDC" -eq 1 ]] ; then
+        submodule_name="generators/sdc_gen"
+        git submodule update --init generators/sdc_gen || exit 1
     fi
 
     # Non-recursive clone
