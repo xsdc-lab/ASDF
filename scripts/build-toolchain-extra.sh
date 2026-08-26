@@ -108,6 +108,11 @@ if [ $TOOLCHAIN == "riscv-tools" ]; then
     cd generators/gemmini
     git submodule update --init software/libgemmini
     make -C $RDIR/generators/gemmini/software/libgemmini install
+
+    # SDC 与 Gemmini 一样通过 Spike 动态扩展运行；独立功能模型会一并编入 libsdc.so。
+    # 放在 Spike 安装之后，确保 $RISCV/include 中已存在当前版本的扩展接口头文件。
+    echo '==> Installing SDC spike extension'
+    make -C $RDIR/generators/sdc_gen/software/spike install
 fi
 
 echo '==>  Installing DRAMSim2 Shared Library'

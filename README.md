@@ -7,6 +7,7 @@
 * **Latest Documentation**: https://chipyard.readthedocs.io/
 * **User Question Forum**: https://groups.google.com/forum/#!forum/chipyard
 * **Bugs and Feature Requests**: https://github.com/ucb-bar/chipyard/issues
+* **SDC 软件、Verilator 与 Spike 路线**: [generators/sdc_gen/SOFTWARE_ROADMAP.md](generators/sdc_gen/SOFTWARE_ROADMAP.md)
 
 ## Using Chipyard
 
